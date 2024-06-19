@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The main branch's code shows a basic example of a map with a marker and navbar using React and MapTiler SDK. This is described step-by-step at https://docs.maptiler.com/react/, except this repo already uses Material UI for the navbar component, which is part of the map component. This repository's branches show code changes corresponding to the [MapTiler react video series]().
+The main branch's code shows a basic example of a map with a marker and navbar using React and MapTiler SDK. This is described step-by-step at https://docs.maptiler.com/react/. The only difference is that this repo has the Material UI for the navbar component, which is part of the map component. This repository's branches show code changes that correspond to the [MapTiler react video series]().
 
 **Get your MAPTILER_CLOUD_API_KEY** to make this code work: https://cloud.maptiler.com/account/keys/ You can create it for free!
 
