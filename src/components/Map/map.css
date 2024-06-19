@@ -1,0 +1,14 @@
+.container {
+  position: relative;
+  height: calc(100vh - 64px);
+  width: 100%;
+  top: 64px;
+}
+
+.map {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
