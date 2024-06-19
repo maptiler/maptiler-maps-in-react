@@ -6,11 +6,11 @@ The main branch's code shows a basic example of a map with a marker and navbar u
 
 **Get your MAPTILER_CLOUD_API_KEY** to make this code work: https://cloud.maptiler.com/account/keys/ You can create it for free!
 
-Learn more about [MapTiler SDK](https://docs.maptiler.com/sdk-js/) and [MapTiler Cloud](https://www.maptiler.com/cloud/), where you can get your basemap and store your data.
+You can learn more about [MapTiler SDK here.](https://docs.maptiler.com/sdk-js/)  Find out about [MapTiler Cloud here](https://www.maptiler.com/cloud/); this is where you can get your basemaps and also store your mapping data.
 
-## get started
+## Get started
 
-1. clone this repo
+1. Clone this repo
 
 ```sh
   git clone https://github.com/maptiler/maps-in-react.git my-react-map
@@ -29,7 +29,7 @@ Learn more about [MapTiler SDK](https://docs.maptiler.com/sdk-js/) and [MapTiler
 ```
 
 4. :warning: Open my-react-map/src/config.js and replace **YOUR_MAPTILER_API_KEY_HERE** with your actual [MapTiler API key](https://cloud.maptiler.com/account/keys/).
-   If you don't have an API KEY you can create it for **FREE** at https://www.maptiler.com/cloud/
+   If you don't have an API KEY, you can create it for **FREE** at https://www.maptiler.com/cloud/
 
 5. Start your local environment
 
@@ -37,9 +37,11 @@ Learn more about [MapTiler SDK](https://docs.maptiler.com/sdk-js/) and [MapTiler
   npm run dev
 ```
 
-6. You will find your app on the address http://localhost:5173/. Now, you should see the map in your browser.
+6. You will find your app on the address http://localhost:5173/. 
+Now you should see the map in your browser.
 
-## Episode specific
+## Episode specific instructions
+Use the information below to help you complete the YouTube Tutorials.
 
 #### E1 - Map in react js with geojson data
 
