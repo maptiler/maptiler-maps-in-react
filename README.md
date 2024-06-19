@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The main branch's code shows a basic example of a map with a marker and navbar using React and MapTiler SDK. This is described step-by-step at https://docs.maptiler.com/react/ Exept this repo already use Material UI for navbar component and navbar is part of map component. This repository's branches show code changes corresponding to the [MapTiler react video series]().
+The main branch's code shows a basic example of a map with a marker and navbar using React and MapTiler SDK. This is described step-by-step at https://docs.maptiler.com/react/, except this repo already uses Material UI for the navbar component, which is part of the map component. This repository's branches show code changes corresponding to the [MapTiler react video series]().
 
 **Get your MAPTILER_CLOUD_API_KEY** to make this code work: https://cloud.maptiler.com/account/keys/ You can create it for free!
 
@@ -57,9 +57,9 @@ Material UI: https://mui.com/core/
 
 #### E4 - Map in React js with geocoding control
 
-dowenload MapTiler geocoding control from npm: https://www.npmjs.com/package/@maptiler/geocoding-control
+download MapTiler geocoding control from npm: https://www.npmjs.com/package/@maptiler/geocoding-control
 
-open terminal on my-react-map folder
+open the terminal on the my-react-map folder
 
 - npm i @maptiler/geocoding-control
 - npm install
@@ -70,8 +70,8 @@ open terminal on my-react-map folder
 
 Enable/disable map terrain programmatically https://docs.maptiler.com/sdk-js/examples/map-terrain/
 
-## build with
+## Build with
 
-[Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)
-[MapTiler SDK JS](https://docs.maptiler.com/sdk-js/)
-[MUI](https://mui.com/material-ui/)
+[Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)  
+[MapTiler SDK JS](https://docs.maptiler.com/sdk-js/)  
+[MUI](https://mui.com/material-ui/)  
