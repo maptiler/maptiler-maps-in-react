@@ -6,7 +6,7 @@ The main branch's code shows a basic example of a map with a marker and navbar u
 
 **Get your MAPTILER_CLOUD_API_KEY** to make this code work: https://cloud.maptiler.com/account/keys/ You can create it for free!
 
-You can learn more about [MapTiler SDK here.](https://docs.maptiler.com/sdk-js/)  Find out about [MapTiler Cloud here](https://www.maptiler.com/cloud/); this is where you can get your basemaps and also store your mapping data.
+You can learn more about [MapTiler SDK here.](https://docs.maptiler.com/sdk-js/) Find out about [MapTiler Cloud here](https://www.maptiler.com/cloud/); this is where you can get your basemaps and also store your mapping data.
 
 ## Get started
 
@@ -37,19 +37,19 @@ You can learn more about [MapTiler SDK here.](https://docs.maptiler.com/sdk-js/)
   npm run dev
 ```
 
-6. You will find your app on the address http://localhost:5173/. 
-Now you should see the map in your browser.
+6. You will find your app on the address http://localhost:5173/.
+   Now you should see the map in your browser.
 
 ## Episode specific instructions
+
 Use the information below to help you complete the YouTube Tutorials.
 
-#### E1 - Map in react js with geojson data
+#### E1 - Map in react js with geojson data, points and clusters
 
 add custom geojson data to a react map with SDK helpers
 read more about MapTilerSDK point helpers: https://docs.maptiler.com/sdk-js/api/helpers/#point
-[data from USGS](https://earthquake.usgs.gov/earthquakes/search/#%7B%22mapposition%22%3A%5B%5B-55.17887%2C178.24219%5D%2C%5B81.99694%2C349.27734%5D%5D%2C%22autoUpdate%22%3A%5B%22autoUpdate%22%5D%2C%22feed%22%3A%22undefined_undefined%22%2C%22listFormat%22%3A%22default%22%2C%22restrictListToMap%22%3A%5B%5D%2C%22sort%22%3A%22newest%22%2C%22basemap%22%3A%22grayscale%22%2C%22overlays%22%3A%5B%22plates%22%5D%2C%22distanceUnit%22%3A%22km%22%2C%22timezone%22%3A%22utc%22%2C%22viewModes%22%3A%5B%22list%22%2C%22settings%22%2C%22map%22%5D%2C%22event%22%3Anull%2C%22search%22%3Anull%7D)
 
-#### E2 - Map in React js with heatmap
+#### E2 - Map in React js with heatmap and visualization switcher
 
 MapTilerSDK heatmap helpers: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
 
@@ -68,7 +68,7 @@ open the terminal on the my-react-map folder
 - npm run dev //to start your map app
   geocoding API reference https://docs.maptiler.com/client-js/geocoding/
 
-#### E5 - 3D Map in React js with geocoding control
+#### E5 - 3D Map in React js
 
 Enable/disable map terrain programmatically https://docs.maptiler.com/sdk-js/examples/map-terrain/
 
@@ -76,4 +76,4 @@ Enable/disable map terrain programmatically https://docs.maptiler.com/sdk-js/exa
 
 [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)  
 [MapTiler SDK JS](https://docs.maptiler.com/sdk-js/)  
-[MUI](https://mui.com/material-ui/)  
+[MUI](https://mui.com/material-ui/)
