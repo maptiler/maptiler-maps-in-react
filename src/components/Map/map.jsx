@@ -4,6 +4,7 @@ import "@maptiler/sdk/dist/maptiler-sdk.css";
 import "./map.css";
 import configData from "../../config";
 import Navbar from "../Navbar/navbar";
+import Sidebar from "../Sidebar/sidebar";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 
@@ -21,6 +22,8 @@ export default function Map() {
   const [pointVisibility, setPointVisibility] = useState("visible");
   const [heatmapVisibility, seHeatmapVisibility] = useState("none");
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [clickedItem, setClickedItem] = useState();
 
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
@@ -81,6 +84,23 @@ export default function Map() {
   }, [center.lng, center.lat, zoom]);
 
   useEffect(() => {
+    if (mapLoaded) {
+      map.current.on("click", pointLayer, (e) => {
+        let coordinates = e.features[0].geometry.coordinates.slice();
+        let description = e.features[0].properties.id;
+
+        new maptilersdk.Popup()
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(map.current);
+
+        setClickedItem(e.features[0].properties);
+        setOpen(true);
+      });
+    }
+  }, [mapLoaded]);
+
+  useEffect(() => {
     if (heatmapLayer && mapLoaded) {
       map.current.setLayoutProperty(
         heatmapLayer,
@@ -97,6 +117,15 @@ export default function Map() {
     }
   }, [pointLayer, pointVisibility, mapLoaded]);
 
+  // const handlePointClick = (e) => {
+  //   const coordinates = e.feaures[0].geometry.coordinates.slice();
+  //   const description = "my first popup";
+
+  //   const newPopup = new maptilersdk.Popup()
+  //     .setLngLat(coordinates)
+  //     .setHTML(description);
+  // };
+
   const handleVizualizationChnge = () => {
     if (buttonText == "Change to heatmap") {
       setButtonText("Change to points");
@@ -109,19 +138,36 @@ export default function Map() {
     }
   };
 
+  //sidevbar handlers
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
-      <Navbar />
-      <div className="container">
-        <div ref={mapContainer} id="map" className="map" />
-        <Button
-          variant="contained"
-          className="btn"
-          sx={{ top: 20, left: 10 }}
-          onClick={handleVizualizationChnge}
-        >
-          {buttonText}
-        </Button>
+      <Navbar handleDrawerOpen={handleDrawerOpen} open={open} />
+      <Sidebar
+        handleDrawerClose={handleDrawerClose}
+        open={open}
+        item={clickedItem}
+      />
+      <div className="Main" open={open}>
+        <div className="container">
+          <div ref={mapContainer} id="map" className="map" />
+          <Button
+            variant="contained"
+            className="btn"
+            sx={{ top: 20, left: 10 }}
+            onClick={handleVizualizationChnge}
+          >
+            {buttonText}
+          </Button>
+        </div>
       </div>
     </Box>
   );

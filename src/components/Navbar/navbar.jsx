@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
+import MenuIcon from "@mui/icons-material/Menu";
 
 // eslint-disable-next-line react/prop-types
 export default function Navbar({ handleDrawerOpen, open }) {
@@ -36,9 +37,11 @@ export default function Navbar({ handleDrawerOpen, open }) {
           aria-label="open drawer"
           onClick={handleDrawerOpen}
           sx={{ mr: 2, ...(open && { display: "none" }) }}
-        ></IconButton>
+        >
+          <MenuIcon />
+        </IconButton>
         <Typography variant="h6" color="inherit" component="div">
-          My React Map
+          Honlulu accomodation
         </Typography>
       </Toolbar>
     </AppBar>

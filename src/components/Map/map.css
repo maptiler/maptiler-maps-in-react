@@ -12,3 +12,31 @@
   height: 100%;
   width: 100%;
 }
+
+.Main {
+  flex-grow: 1;
+  height: calc(100vh - 64px);
+  transition: margin var(--transition-duration) var(--transition-easing); /* Use custom properties */
+}
+
+.Main[open] {
+  transition: margin var(--transition-duration-entering)
+    var(--transition-easing-easeOut); /* Animate on open */
+  margin-left: 0;
+}
+
+/* Define custom properties for theming (assuming a theming system is used) */
+:root {
+  --transition-duration: var(
+    --theme-transitions-duration-leavingScreen
+  ); /* Use themed duration */
+  --transition-easing: var(
+    --theme-transitions-easing-sharp
+  ); /* Use themed easing */
+  --transition-duration-entering: var(
+    --theme-transitions-duration-enteringScreen
+  ); /* Entering animation duration */
+  --transition-easing-easeOut: var(
+    --theme-transitions-easing-easeOut
+  ); /* Entering animation easing */
+}
