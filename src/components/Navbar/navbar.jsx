@@ -38,7 +38,7 @@ export default function Navbar({ handleDrawerOpen, open }) {
           sx={{ mr: 2, ...(open && { display: "none" }) }}
         ></IconButton>
         <Typography variant="h6" color="inherit" component="div">
-          My React Map
+          Honolulu Accommodation
         </Typography>
       </Toolbar>
     </AppBar>
