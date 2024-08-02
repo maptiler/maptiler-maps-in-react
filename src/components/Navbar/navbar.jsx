@@ -41,7 +41,7 @@ export default function Navbar({ handleDrawerOpen, open }) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" color="inherit" component="div">
-          Honlulu accomodation
+          Honolulu Accommodation
         </Typography>
       </Toolbar>
     </AppBar>
