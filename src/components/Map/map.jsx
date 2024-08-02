@@ -12,14 +12,12 @@ export default function Map() {
   const map = useRef(null);
   const geodata = configData.MAPTILER_DATSET_ID;
   const center = { lng: -157.9253, lat: 21.4732 };
-  const [zoom] = useState(9.79); //9.79/21.4732/-157.9253
+  const zoom = 9.79; //9.79/21.4732/-157.9253
   maptilersdk.config.apiKey = configData.MAPTILER_API_KEY;
-  const [buttonText, setButtonText] = useState("Change to heatmap");
   const [heatmapLayer, setHeatmapLayer] = useState("");
   const [pointLayer, setPointLayer] = useState("");
   const [pointLabels, setPointLabels] = useState("");
-  const [pointVisibility, setPointVisibility] = useState("visible");
-  const [heatmapVisibility, seHeatmapVisibility] = useState("none");
+  const [selectedMapLayer, setSelectedMapLayer] = useState('point') // 'point' or 'heatmap'
   const [mapLoaded, setMapLoaded] = useState(false);
 
   useEffect(() => {
@@ -35,8 +33,8 @@ export default function Map() {
     });
 
     //Read more about MapTiler Heatmap Helper: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
-    map.current.on("load", async () => {
-      const { heatmapLayerId } = await maptilersdk.helpers.addHeatmap(
+    map.current.on("load", () => {
+      const { heatmapLayerId } = maptilersdk.helpers.addHeatmap(
         map.current,
         {
           data: geodata,
@@ -52,11 +50,12 @@ export default function Map() {
         }
       );
       setHeatmapLayer(heatmapLayerId);
+      setMapLoaded(true);
     });
 
     //Read more about MapTiler Point Helper: https://docs.maptiler.com/sdk-js/api/helpers/#point
-    map.current.on("load", async () => {
-      const { pointLayerId, labelLayerId } = await maptilersdk.helpers.addPoint(
+    map.current.on("load", () => {
+      const { pointLayerId, labelLayerId } = maptilersdk.helpers.addPoint(
         map.current,
         {
           data: geodata,
@@ -74,10 +73,6 @@ export default function Map() {
       setMapLoaded(true);
     });
 
-    // Add marker read more about markers https://docs.maptiler.com/sdk-js/api/markers/#marker
-    // new maptilersdk.Marker({ color: "#FF0000" })
-    //   .setLngLat([139.7525, 35.6846])
-    //   .addTo(map.current);
   }, [center.lng, center.lat, zoom]);
 
   useEffect(() => {
@@ -85,28 +80,20 @@ export default function Map() {
       map.current.setLayoutProperty(
         heatmapLayer,
         "visibility",
-        heatmapVisibility
+        selectedMapLayer === 'heatmap' ? 'visible' : 'none'
       );
     }
-  }, [heatmapLayer, heatmapVisibility, mapLoaded]);
+  }, [heatmapLayer, selectedMapLayer, mapLoaded]);
 
   useEffect(() => {
     if (pointLayer && mapLoaded) {
-      map.current.setLayoutProperty(pointLayer, "visibility", pointVisibility);
-      map.current.setLayoutProperty(pointLabels, "visibility", pointVisibility);
+      map.current.setLayoutProperty(pointLayer, "visibility", selectedMapLayer === 'point' ? 'visible' : 'none');
+      map.current.setLayoutProperty(pointLabels, "visibility", selectedMapLayer === 'point' ? 'visible' : 'none');
     }
-  }, [pointLayer, pointVisibility, mapLoaded]);
+  }, [pointLayer, selectedMapLayer, mapLoaded]);
 
   const handleVizualizationChnge = () => {
-    if (buttonText == "Change to heatmap") {
-      setButtonText("Change to points");
-      setPointVisibility("none");
-      seHeatmapVisibility("visible");
-    } else {
-      setButtonText("Change to heatmap");
-      setPointVisibility("visible");
-      seHeatmapVisibility("none");
-    }
+    setSelectedMapLayer(prev => prev === 'point' ? 'heatmap' : 'point')
   };
 
   return (
@@ -120,7 +107,7 @@ export default function Map() {
           sx={{ top: 20, left: 10 }}
           onClick={handleVizualizationChnge}
         >
-          {buttonText}
+          Change to {selectedMapLayer === 'point' ? 'heatmap' : 'point'}
         </Button>
       </div>
     </Box>
