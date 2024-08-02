@@ -1,5 +1,4 @@
 import "./App.css";
-import Navbar from "./components/Navbar/navbar.jsx";
 import Map from "./components/Map/map.jsx";
 
 function App() {

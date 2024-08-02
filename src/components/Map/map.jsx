@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from "react";
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import "./map.css";
+import { Button } from "@mui/material";
+import Box from "@mui/material/Box";
+import React, { useEffect, useRef, useState } from "react";
 import configData from "../../config";
 import Navbar from "../Navbar/navbar";
-import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
+import "./map.css";
 
 export default function Map() {
   const mapContainer = useRef(null);
