@@ -12,7 +12,6 @@ import Typography from "@mui/material/Typography";
 export default function Sidebar({ open, handleDrawerClose, item }) {
   const drawerWidth = open ? "250px" : "0px";
   const theme = useTheme();
-  console.log(item);
 
   const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -49,7 +48,12 @@ export default function Sidebar({ open, handleDrawerClose, item }) {
       <List>
         {item ? (
           <ListItem key={item.id}>
-            <ListItemText primary={item.name} />
+            <ListItemText
+              primary={item.name}
+              secondary={
+                <Typography variant="body">Host: {item.host_name}</Typography>
+              }
+            />
           </ListItem>
         ) : (
           <Typography variant="body-1" component="p" sx={{ padding: 2 }}>

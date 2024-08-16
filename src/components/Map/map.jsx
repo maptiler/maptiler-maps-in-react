@@ -7,6 +7,8 @@ import configData from "../../config";
 import Navbar from "../Navbar/navbar";
 import Sidebar from "../Sidebar/sidebar";
 import "./map.css";
+import { GeocodingControl } from "@maptiler/geocoding-control/maptilersdk";
+import "@maptiler/geocoding-control/style.css";
 
 export default function Map() {
   const mapContainer = useRef(null);
@@ -18,7 +20,7 @@ export default function Map() {
   const [heatmapLayer, setHeatmapLayer] = useState("");
   const [pointLayer, setPointLayer] = useState("");
   const [pointLabels, setPointLabels] = useState("");
-  const [selectedMapLayer, setSelectedMapLayer] = useState('point') // 'point' or 'heatmap'
+  const [selectedMapLayer, setSelectedMapLayer] = useState("point"); // 'point' or 'heatmap'
   const [mapLoaded, setMapLoaded] = useState(false);
   const [open, setOpen] = useState(false);
   const [clickedItem, setClickedItem] = useState();
@@ -32,26 +34,29 @@ export default function Map() {
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
-      terrain: true,
     });
+
+    //MapTiler Geocoding API: https://docs.maptiler.com/cloud/api/geocoding/
+    const gc = new GeocodingControl({
+      limit: 10, //limit resoult number
+      country: "us", // limit resoults to united states
+    });
+    map.current.addControl(gc); //here you can also specify position of geocoding conterol .addControl(gc,"top-right")
 
     //Read more about MapTiler Heatmap Helper: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
     map.current.on("load", () => {
-      const { heatmapLayerId } = maptilersdk.helpers.addHeatmap(
-        map.current,
-        {
-          data: geodata,
-          property: "minimum_nights",
-          weight: [
-            { propertyValue: 1, value: 1 },
-            { propertyValue: 30, value: 0 },
-          ],
-          radius: [
-            { propertyValue: 1, value: 60 },
-            { propertyValue: 30, value: 0 },
-          ],
-        }
-      );
+      const { heatmapLayerId } = maptilersdk.helpers.addHeatmap(map.current, {
+        data: geodata,
+        property: "minimum_nights",
+        weight: [
+          { propertyValue: 1, value: 1 },
+          { propertyValue: 30, value: 0 },
+        ],
+        radius: [
+          { propertyValue: 1, value: 60 },
+          { propertyValue: 30, value: 0 },
+        ],
+      });
       setHeatmapLayer(heatmapLayerId);
       setMapLoaded(true);
     });
@@ -75,7 +80,6 @@ export default function Map() {
       setPointLayer(pointLayerId);
       setMapLoaded(true);
     });
-
   }, [center.lng, center.lat, zoom]);
 
   useEffect(() => {
@@ -100,15 +104,23 @@ export default function Map() {
       map.current.setLayoutProperty(
         heatmapLayer,
         "visibility",
-        selectedMapLayer === 'heatmap' ? 'visible' : 'none'
+        selectedMapLayer === "heatmap" ? "visible" : "none"
       );
     }
   }, [heatmapLayer, selectedMapLayer, mapLoaded]);
 
   useEffect(() => {
     if (pointLayer && mapLoaded) {
-      map.current.setLayoutProperty(pointLayer, "visibility", selectedMapLayer === 'point' ? 'visible' : 'none');
-      map.current.setLayoutProperty(pointLabels, "visibility", selectedMapLayer === 'point' ? 'visible' : 'none');
+      map.current.setLayoutProperty(
+        pointLayer,
+        "visibility",
+        selectedMapLayer === "point" ? "visible" : "none"
+      );
+      map.current.setLayoutProperty(
+        pointLabels,
+        "visibility",
+        selectedMapLayer === "point" ? "visible" : "none"
+      );
     }
   }, [pointLayer, selectedMapLayer, mapLoaded]);
 
@@ -122,7 +134,7 @@ export default function Map() {
   // };
 
   const handleVizualizationChnge = () => {
-    setSelectedMapLayer(prev => prev === 'point' ? 'heatmap' : 'point')
+    setSelectedMapLayer((prev) => (prev === "point" ? "heatmap" : "point"));
   };
 
   //sidevbar handlers
@@ -152,7 +164,7 @@ export default function Map() {
             sx={{ top: 20, left: 10 }}
             onClick={handleVizualizationChnge}
           >
-            Change to {selectedMapLayer === 'point' ? 'heatmap' : 'point'}
+            Change to {selectedMapLayer === "point" ? "heatmap" : "point"}
           </Button>
         </div>
       </div>
