@@ -6,7 +6,7 @@ The main branch's code shows a basic example of a map with a marker and navbar u
 
 **Get your MAPTILER_CLOUD_API_KEY** to make this code work: https://cloud.maptiler.com/account/keys/ You can create it for free!
 
-You can learn more about [MapTiler SDK here.](https://docs.maptiler.com/sdk-js/)  Find out about [MapTiler Cloud here](https://www.maptiler.com/cloud/); this is where you can get your basemaps and also store your mapping data.
+You can learn more about [MapTiler SDK here.](https://docs.maptiler.com/sdk-js/) Find out about [MapTiler Cloud here](https://www.maptiler.com/cloud/); this is where you can get your basemaps and also store your mapping data.
 
 ## Get started
 
@@ -37,10 +37,11 @@ You can learn more about [MapTiler SDK here.](https://docs.maptiler.com/sdk-js/)
   npm run dev
 ```
 
-6. You will find your app on the address http://localhost:5173/. 
-Now you should see the map in your browser.
+6. You will find your app on the address http://localhost:5173/.
+   Now you should see the map in your browser.
 
 ## Episode specific instructions
+
 Use the information below to help you complete the YouTube Tutorials.
 
 #### E1 - Map in react js with geojson data
@@ -76,4 +77,4 @@ Enable/disable map terrain programmatically https://docs.maptiler.com/sdk-js/exa
 
 [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)  
 [MapTiler SDK JS](https://docs.maptiler.com/sdk-js/)  
-[MUI](https://mui.com/material-ui/)  
+[MUI](https://mui.com/material-ui/)
