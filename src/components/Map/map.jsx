@@ -38,8 +38,10 @@ export default function Map() {
 
     //MapTiler Geocoding API: https://docs.maptiler.com/cloud/api/geocoding/
     const gc = new GeocodingControl({
-      limit: 10, //limit resoult number
+      limit: 10, // limit resoult number
       country: "us", // limit resoults to united states
+      proximity: [{ type: "map-center" }], // resoults closer to map center will be shown first
+      types: ["address"],
     });
     map.current.addControl(gc); //here you can also specify position of geocoding conterol .addControl(gc,"top-right")
 
