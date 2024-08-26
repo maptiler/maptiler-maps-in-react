@@ -76,7 +76,7 @@ export default function Map() {
           labelColor: "black",
           // pointRadius: 10,
           // cluster: true,
-        }
+        },
       );
       setPointLabels(labelLayerId);
       setPointLayer(pointLayerId);
@@ -106,7 +106,7 @@ export default function Map() {
       map.current.setLayoutProperty(
         heatmapLayer,
         "visibility",
-        selectedMapLayer === "heatmap" ? "visible" : "none"
+        selectedMapLayer === "heatmap" ? "visible" : "none",
       );
     }
   }, [heatmapLayer, selectedMapLayer, mapLoaded]);
@@ -116,12 +116,12 @@ export default function Map() {
       map.current.setLayoutProperty(
         pointLayer,
         "visibility",
-        selectedMapLayer === "point" ? "visible" : "none"
+        selectedMapLayer === "point" ? "visible" : "none",
       );
       map.current.setLayoutProperty(
         pointLabels,
         "visibility",
-        selectedMapLayer === "point" ? "visible" : "none"
+        selectedMapLayer === "point" ? "visible" : "none",
       );
     }
   }, [pointLayer, selectedMapLayer, mapLoaded]);
