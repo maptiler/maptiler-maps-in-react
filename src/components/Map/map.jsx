@@ -17,7 +17,7 @@ export default function Map() {
   const [heatmapLayer, setHeatmapLayer] = useState("");
   const [pointLayer, setPointLayer] = useState("");
   const [pointLabels, setPointLabels] = useState("");
-  const [selectedMapLayer, setSelectedMapLayer] = useState('point') // 'point' or 'heatmap'
+  const [selectedMapLayer, setSelectedMapLayer] = useState("point"); // 'point' or 'heatmap'
   const [mapLoaded, setMapLoaded] = useState(false);
 
   useEffect(() => {
@@ -34,21 +34,18 @@ export default function Map() {
 
     //Read more about MapTiler Heatmap Helper: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
     map.current.on("load", () => {
-      const { heatmapLayerId } = maptilersdk.helpers.addHeatmap(
-        map.current,
-        {
-          data: geodata,
-          property: "minimum_nights",
-          weight: [
-            { propertyValue: 1, value: 1 },
-            { propertyValue: 30, value: 0 },
-          ],
-          radius: [
-            { propertyValue: 1, value: 60 },
-            { propertyValue: 30, value: 0 },
-          ],
-        }
-      );
+      const { heatmapLayerId } = maptilersdk.helpers.addHeatmap(map.current, {
+        data: geodata,
+        property: "minimum_nights",
+        weight: [
+          { propertyValue: 1, value: 1 },
+          { propertyValue: 30, value: 0 },
+        ],
+        radius: [
+          { propertyValue: 1, value: 60 },
+          { propertyValue: 30, value: 0 },
+        ],
+      });
       setHeatmapLayer(heatmapLayerId);
       setMapLoaded(true);
     });
@@ -66,13 +63,12 @@ export default function Map() {
           labelColor: "black",
           // pointRadius: 10,
           // cluster: true,
-        }
+        },
       );
       setPointLabels(labelLayerId);
       setPointLayer(pointLayerId);
       setMapLoaded(true);
     });
-
   }, [center.lng, center.lat, zoom]);
 
   useEffect(() => {
@@ -80,20 +76,28 @@ export default function Map() {
       map.current.setLayoutProperty(
         heatmapLayer,
         "visibility",
-        selectedMapLayer === 'heatmap' ? 'visible' : 'none'
+        selectedMapLayer === "heatmap" ? "visible" : "none",
       );
     }
   }, [heatmapLayer, selectedMapLayer, mapLoaded]);
 
   useEffect(() => {
     if (pointLayer && mapLoaded) {
-      map.current.setLayoutProperty(pointLayer, "visibility", selectedMapLayer === 'point' ? 'visible' : 'none');
-      map.current.setLayoutProperty(pointLabels, "visibility", selectedMapLayer === 'point' ? 'visible' : 'none');
+      map.current.setLayoutProperty(
+        pointLayer,
+        "visibility",
+        selectedMapLayer === "point" ? "visible" : "none",
+      );
+      map.current.setLayoutProperty(
+        pointLabels,
+        "visibility",
+        selectedMapLayer === "point" ? "visible" : "none",
+      );
     }
   }, [pointLayer, selectedMapLayer, mapLoaded]);
 
   const handleVizualizationChnge = () => {
-    setSelectedMapLayer(prev => prev === 'point' ? 'heatmap' : 'point')
+    setSelectedMapLayer((prev) => (prev === "point" ? "heatmap" : "point"));
   };
 
   return (
@@ -107,7 +111,7 @@ export default function Map() {
           sx={{ top: 20, left: 10 }}
           onClick={handleVizualizationChnge}
         >
-          Change to {selectedMapLayer === 'point' ? 'heatmap' : 'point'}
+          Change to {selectedMapLayer === "point" ? "heatmap" : "point"}
         </Button>
       </div>
     </Box>
