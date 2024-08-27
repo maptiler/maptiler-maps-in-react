@@ -9,6 +9,7 @@ import Sidebar from "../Sidebar/sidebar";
 import "./map.css";
 import { GeocodingControl } from "@maptiler/geocoding-control/react";
 import "@maptiler/geocoding-control/style.css";
+import { createMapLibreGlMapController } from "@maptiler/geocoding-control/maplibregl-controller";
 
 export default function Map() {
   const mapContainer = useRef(null);
@@ -24,6 +25,7 @@ export default function Map() {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [open, setOpen] = useState(false);
   const [clickedItem, setClickedItem] = useState();
+  const [mapController, setMapController] = useState();
 
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
@@ -35,6 +37,8 @@ export default function Map() {
       zoom: zoom,
       hash: true,
     });
+
+    setMapController(createMapLibreGlMapController(map.current, maptilersdk));
 
     //Read more about MapTiler Heatmap Helper: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
     map.current.on("load", () => {
@@ -117,15 +121,6 @@ export default function Map() {
     }
   }, [pointLayer, selectedMapLayer, mapLoaded]);
 
-  // const handlePointClick = (e) => {
-  //   const coordinates = e.feaures[0].geometry.coordinates.slice();
-  //   const description = "my first popup";
-
-  //   const newPopup = new maptilersdk.Popup()
-  //     .setLngLat(coordinates)
-  //     .setHTML(description);
-  // };
-
   const handleVizualizationChnge = () => {
     setSelectedMapLayer((prev) => (prev === "point" ? "heatmap" : "point"));
   };
@@ -163,18 +158,20 @@ export default function Map() {
           <div className="geocoding">
             {/* MapTiler Geocoding API:https://docs.maptiler.com/cloud/api/geocoding/
              MapTiler Geocoding react component: https://docs.maptiler.com/sdk-js/modules/geocoding/api/usage/react/ */}
-            <GeocodingControl
-              limit={10} // return maximum of 10 results in the result list
-              country="us" // limit results to united states
-              proximity={[
-                {
-                  type: "fixed",
-                  coordinates: [-157.89629465879972, 21.349636477781118],
-                },
-              ]} // results closer to specified center will be shown first
-              types={["address"]}
-              apiKey={configData.MAPTILER_API_KEY}
-            />
+            {mapController && (
+              <GeocodingControl
+                limit={10} // return maximum of 10 results in the result list
+                country="us" // limit results to united states
+                proximity={[
+                  {
+                    type: "map-center",
+                  },
+                ]} // results closer to specified center will be shown first
+                types={["address"]}
+                apiKey={configData.MAPTILER_API_KEY}
+                mapController={mapController}
+              />
+            )}
           </div>
         </div>
       </div>
