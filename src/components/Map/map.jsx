@@ -79,7 +79,7 @@ export default function Map() {
     if (mapLoaded) {
       map.current.on("click", pointLayer, (e) => {
         let coordinates = e.features[0].geometry.coordinates.slice();
-        let description = e.features[0].properties.id;
+        let description = e.features[0].properties.name;
 
         new maptilersdk.Popup()
           .setLngLat(coordinates)
@@ -117,21 +117,11 @@ export default function Map() {
     }
   }, [pointLayer, selectedMapLayer, mapLoaded]);
 
-  // const handlePointClick = (e) => {
-  //   const coordinates = e.feaures[0].geometry.coordinates.slice();
-  //   const description = "my first popup";
-
-  //   const newPopup = new maptilersdk.Popup()
-  //     .setLngLat(coordinates)
-  //     .setHTML(description);
-  // };
-
   const handleVizualizationChnge = () => {
     setSelectedMapLayer((prev) => (prev === "point" ? "heatmap" : "point"));
   };
 
   //sidevbar handlers
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
