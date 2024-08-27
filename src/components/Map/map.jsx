@@ -7,7 +7,7 @@ import configData from "../../config";
 import Navbar from "../Navbar/navbar";
 import Sidebar from "../Sidebar/sidebar";
 import "./map.css";
-import { GeocodingControl } from "@maptiler/geocoding-control/react";
+import { GeocodingControl } from "@maptiler/geocoding-control/maptilersdk";
 import "@maptiler/geocoding-control/style.css";
 
 export default function Map() {
@@ -35,6 +35,15 @@ export default function Map() {
       zoom: zoom,
       hash: true,
     });
+
+    //MapTiler Geocoding API: https://docs.maptiler.com/cloud/api/geocoding/
+    const gc = new GeocodingControl({
+      limit: 10, // limit resoult number
+      country: "us", // limit resoults to united states
+      proximity: [{ type: "map-center" }], // resoults closer to map center will be shown first
+      types: ["address"],
+    });
+    map.current.addControl(gc); //here you can also specify position of geocoding conterol .addControl(gc,"top-right")
 
     //Read more about MapTiler Heatmap Helper: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
     map.current.on("load", () => {
@@ -79,7 +88,7 @@ export default function Map() {
     if (mapLoaded) {
       map.current.on("click", pointLayer, (e) => {
         let coordinates = e.features[0].geometry.coordinates.slice();
-        let description = e.features[0].properties.name;
+        let description = e.features[0].properties.id;
 
         new maptilersdk.Popup()
           .setLngLat(coordinates)
@@ -117,11 +126,21 @@ export default function Map() {
     }
   }, [pointLayer, selectedMapLayer, mapLoaded]);
 
+  // const handlePointClick = (e) => {
+  //   const coordinates = e.feaures[0].geometry.coordinates.slice();
+  //   const description = "my first popup";
+
+  //   const newPopup = new maptilersdk.Popup()
+  //     .setLngLat(coordinates)
+  //     .setHTML(description);
+  // };
+
   const handleVizualizationChnge = () => {
     setSelectedMapLayer((prev) => (prev === "point" ? "heatmap" : "point"));
   };
 
   //sidevbar handlers
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -149,23 +168,6 @@ export default function Map() {
           >
             Change to {selectedMapLayer === "point" ? "heatmap" : "point"}
           </Button>
-
-          <div className="geocoding">
-            {/* MapTiler Geocoding API:https://docs.maptiler.com/cloud/api/geocoding/
-             MapTiler Geocoding react component: https://docs.maptiler.com/sdk-js/modules/geocoding/api/usage/react/ */}
-            <GeocodingControl
-              limit={10} // return maximum of 10 results in the result list
-              country="us" // limit results to united states
-              proximity={[
-                {
-                  type: "fixed",
-                  coordinates: [-157.89629465879972, 21.349636477781118],
-                },
-              ]} // results closer to specified center will be shown first
-              types={["address"]}
-              apiKey={configData.MAPTILER_API_KEY}
-            />
-          </div>
         </div>
       </div>
     </Box>
