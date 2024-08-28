@@ -1,14 +1,33 @@
+import { GeocodingControl } from "@maptiler/geocoding-control/maptilersdk";
+import "@maptiler/geocoding-control/style.css";
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
+import { styled } from '@mui/material/styles';
 import React, { useEffect, useRef, useState } from "react";
 import configData from "../../config";
 import Navbar from "../Navbar/navbar";
 import Sidebar from "../Sidebar/sidebar";
 import "./map.css";
-import { GeocodingControl } from "@maptiler/geocoding-control/maptilersdk";
-import "@maptiler/geocoding-control/style.css";
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${250}px`,
+    ...(open && {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  }),
+);
 
 export default function Map() {
   const mapContainer = useRef(null);
@@ -157,19 +176,21 @@ export default function Map() {
         open={open}
         item={clickedItem}
       />
-      <div className="Main" open={open}>
-        <div className="container">
-          <div ref={mapContainer} id="map" className="map" />
-          <Button
-            variant="contained"
-            className="btn"
-            sx={{ top: 20, left: 10 }}
-            onClick={handleVizualizationChnge}
-          >
-            Change to {selectedMapLayer === "point" ? "heatmap" : "point"}
-          </Button>
-        </div>
+      <Main open={open}>
+        <Button
+          variant="contained"
+          className="btn"
+          sx={{ top: 84, left: 10, zIndex: 10 }}
+          onClick={handleVizualizationChnge}
+
+        >
+          Change to {selectedMapLayer === "point" ? "heatmap" : "point"}
+        </Button>
+      </Main>
+      <div className="container">
+        <div ref={mapContainer} id="map" className="map" />
       </div>
+
     </Box>
   );
 }

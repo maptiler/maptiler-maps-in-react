@@ -10,7 +10,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 
 export default function Sidebar({ open, handleDrawerClose, item }) {
-  const drawerWidth = open ? "250px" : "0px";
+  const drawerWidth = "250px"
   const theme = useTheme();
 
   const DrawerHeader = styled("div")(({ theme }) => ({
