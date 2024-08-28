@@ -88,7 +88,7 @@ export default function Map() {
     if (mapLoaded) {
       map.current.on("click", pointLayer, (e) => {
         let coordinates = e.features[0].geometry.coordinates.slice();
-        let description = e.features[0].properties.id;
+        let description = e.features[0].properties.name;
 
         new maptilersdk.Popup()
           .setLngLat(coordinates)
