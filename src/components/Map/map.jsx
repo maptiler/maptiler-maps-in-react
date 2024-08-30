@@ -49,10 +49,12 @@ export default function Map() {
 
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.STREETS,
+      style: maptilersdk.MapStyle.BACKDROP,
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
+      terrain: true,
+      terrainControl: true,
     });
 
     //MapTiler Geocoding API: https://docs.maptiler.com/cloud/api/geocoding/
@@ -77,6 +79,7 @@ export default function Map() {
           { propertyValue: 1, value: 60 },
           { propertyValue: 30, value: 0 },
         ],
+        colorRamp: maptilersdk.ColorRampCollection.COOL,
       });
       setHeatmapLayer(heatmapLayerId);
       setMapLoaded(true);
