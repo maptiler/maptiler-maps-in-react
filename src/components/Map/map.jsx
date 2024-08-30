@@ -57,17 +57,17 @@ export default function Map() {
       terrainControl: true,
     });
 
-    // Find the index of the last symbol layer in the map style
-    function getLastLabelId() {
+    // Find the index of the first symbol layer in the map style
+    function getFirstLabelId() {
       let layers = map.current.getStyle().layers;
-      let LastLabelId;
+      let FirstLabelId;
       for (var i = 0; i < layers.length; i++) {
         if (layers[i].type === "symbol") {
-          LastLabelId = layers[i].id;
+          FirstLabelId = layers[i].id;
           break;
         }
       }
-      return LastLabelId;
+      return FirstLabelId;
     }
 
     map.current.on("terrain", function () {
@@ -89,7 +89,7 @@ export default function Map() {
 
     //Read more about MapTiler Heatmap Helper: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
     map.current.on("load", () => {
-      const labels = getLastLabelId();
+      const labels = getFirstLabelId();
       const { heatmapLayerId } = maptilersdk.helpers.addHeatmap(map.current, {
         beforeId: labels,
         data: geodata,
@@ -110,7 +110,7 @@ export default function Map() {
 
     //Read more about MapTiler Point Helper: https://docs.maptiler.com/sdk-js/api/helpers/#point
     map.current.on("load", () => {
-      const labels = getLastLabelId();
+      const labels = getFirstLabelId();
       const { pointLayerId, labelLayerId } = maptilersdk.helpers.addPoint(
         map.current,
         {
@@ -121,7 +121,6 @@ export default function Map() {
           pointOpacity: 0.5,
           showLabel: true,
           labelColor: "black",
-          beforeId: labels,
           // pointRadius: 10,
           // cluster: true,
         },
