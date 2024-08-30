@@ -4,23 +4,23 @@ import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import React, { useEffect, useRef, useState } from "react";
 import configData from "../../config";
 import Navbar from "../Navbar/navbar";
 import Sidebar from "../Sidebar/sidebar";
 import "./map.css";
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: `-${250}px`,
     ...(open && {
-      transition: theme.transitions.create('margin', {
+      transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
@@ -39,7 +39,7 @@ export default function Map() {
   const [heatmapLayer, setHeatmapLayer] = useState("");
   const [pointLayer, setPointLayer] = useState("");
   const [pointLabels, setPointLabels] = useState("");
-  const [selectedMapLayer, setSelectedMapLayer] = useState("point"); // 'point' or 'heatmap'
+  const [selectedMapLayer, setSelectedMapLayer] = useState("heatmap"); // 'point' or 'heatmap'
   const [mapLoaded, setMapLoaded] = useState(false);
   const [open, setOpen] = useState(false);
   const [clickedItem, setClickedItem] = useState();
@@ -49,12 +49,33 @@ export default function Map() {
 
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.BACKDROP,
+      style: maptilersdk.MapStyle.DATAVIZ,
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
       terrain: true,
       terrainControl: true,
+    });
+
+    // Find the index of the last symbol layer in the map style
+    function getLastLabelId() {
+      let layers = map.current.getStyle().layers;
+      let LastLabelId;
+      for (var i = 0; i < layers.length; i++) {
+        if (layers[i].type === "symbol") {
+          LastLabelId = layers[i].id;
+          break;
+        }
+      }
+      return LastLabelId;
+    }
+
+    map.current.on("terrain", function () {
+      if (map.current.hasTerrain()) {
+        map.current.easeTo({ pitch: 60, duration: 2000 });
+      } else {
+        map.current.easeTo({ pitch: 0, duration: 2000 });
+      }
     });
 
     //MapTiler Geocoding API: https://docs.maptiler.com/cloud/api/geocoding/
@@ -68,7 +89,9 @@ export default function Map() {
 
     //Read more about MapTiler Heatmap Helper: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
     map.current.on("load", () => {
+      const labels = getLastLabelId();
       const { heatmapLayerId } = maptilersdk.helpers.addHeatmap(map.current, {
+        beforeId: labels,
         data: geodata,
         property: "minimum_nights",
         weight: [
@@ -87,19 +110,23 @@ export default function Map() {
 
     //Read more about MapTiler Point Helper: https://docs.maptiler.com/sdk-js/api/helpers/#point
     map.current.on("load", () => {
+      const labels = getLastLabelId();
       const { pointLayerId, labelLayerId } = maptilersdk.helpers.addPoint(
         map.current,
         {
           data: geodata,
+          beforeId: labels,
           pointColor: maptilersdk.ColorRampCollection.COOL.scale(0, 30),
           property: "minimum_nights",
           pointOpacity: 0.5,
           showLabel: true,
           labelColor: "black",
+          beforeId: labels,
           // pointRadius: 10,
           // cluster: true,
         },
       );
+
       setPointLabels(labelLayerId);
       setPointLayer(pointLayerId);
       setMapLoaded(true);
@@ -185,7 +212,6 @@ export default function Map() {
           className="btn"
           sx={{ top: 84, left: 10, zIndex: 10 }}
           onClick={handleVizualizationChnge}
-
         >
           Change to {selectedMapLayer === "point" ? "heatmap" : "point"}
         </Button>
@@ -193,7 +219,6 @@ export default function Map() {
       <div className="container">
         <div ref={mapContainer} id="map" className="map" />
       </div>
-
     </Box>
   );
 }
