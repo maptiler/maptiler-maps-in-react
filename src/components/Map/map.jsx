@@ -49,7 +49,7 @@ export default function Map() {
 
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.DATAVIZ.LIGHT,
+      style: maptilersdk.MapStyle.BACKDROP,
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
