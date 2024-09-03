@@ -11,6 +11,7 @@ import Navbar from "../Navbar/navbar";
 import Sidebar from "../Sidebar/sidebar";
 import "./map.css";
 
+//styling for nice transition when sidebar is opened
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
@@ -34,22 +35,22 @@ export default function Map() {
   const map = useRef(null);
   const geodata = configData.MAPTILER_DATSET_ID;
   const center = { lng: -157.9253, lat: 21.4732 };
-  const zoom = 9.79; //9.79/21.4732/-157.9253
+  const zoom = 9.79; // 9.79/21.4732/-157.9253
   maptilersdk.config.apiKey = configData.MAPTILER_API_KEY;
   const [heatmapLayer, setHeatmapLayer] = useState("");
   const [pointLayer, setPointLayer] = useState("");
   const [pointLabels, setPointLabels] = useState("");
-  const [selectedMapLayer, setSelectedMapLayer] = useState("heatmap"); // 'point' or 'heatmap'
+  const [selectedMapLayer, setSelectedMapLayer] = useState("point"); // 'point' or 'heatmap'
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [clickedItem, setClickedItem] = useState();
 
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
-
+    //map options: https://docs.maptiler.com/sdk-js/api/map/
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.BACKDROP,
+      style: maptilersdk.MapStyle.BACKDROP, //more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
@@ -57,19 +58,7 @@ export default function Map() {
       terrainControl: true,
     });
 
-    // Find the index of the first symbol layer in the map style
-    function getFirstLabelId() {
-      let layers = map.current.getStyle().layers;
-      let FirstLabelId;
-      for (var i = 0; i < layers.length; i++) {
-        if (layers[i].type === "symbol") {
-          FirstLabelId = layers[i].id;
-          break;
-        }
-      }
-      return FirstLabelId;
-    }
-
+    //change map pitch when terrain is loaded
     map.current.on("terrain", function () {
       if (map.current.hasTerrain()) {
         map.current.easeTo({ pitch: 60, duration: 2000 });
@@ -83,15 +72,13 @@ export default function Map() {
       limit: 10, // limit resoult number
       country: "us", // limit resoults to united states
       proximity: [{ type: "map-center" }], // resoults closer to map center will be shown first
-      types: ["address"],
+      types: ["address"], // limit search types only to adresses
     });
-    map.current.addControl(gc); //here you can also specify position of geocoding conterol .addControl(gc,"top-right")
+    map.current.addControl(gc); // here you can also specify position of geocoding conterol .addControl(gc,"top-right")
 
     //Read more about MapTiler Heatmap Helper: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
     map.current.on("load", () => {
-      const labels = getFirstLabelId();
       const { heatmapLayerId } = maptilersdk.helpers.addHeatmap(map.current, {
-        beforeId: labels,
         data: geodata,
         property: "minimum_nights",
         weight: [
@@ -110,12 +97,10 @@ export default function Map() {
 
     //Read more about MapTiler Point Helper: https://docs.maptiler.com/sdk-js/api/helpers/#point
     map.current.on("load", () => {
-      const labels = getFirstLabelId();
       const { pointLayerId, labelLayerId } = maptilersdk.helpers.addPoint(
         map.current,
         {
           data: geodata,
-          beforeId: labels,
           pointColor: maptilersdk.ColorRampCollection.COOL.scale(0, 30),
           property: "minimum_nights",
           pointOpacity: 0.5,
@@ -132,6 +117,7 @@ export default function Map() {
     });
   }, [center.lng, center.lat, zoom]);
 
+  // use effect for popup
   useEffect(() => {
     if (mapLoaded) {
       map.current.on("click", pointLayer, (e) => {
@@ -144,11 +130,12 @@ export default function Map() {
           .addTo(map.current);
 
         setClickedItem(e.features[0].properties);
-        setOpen(true);
+        setIsOpen(true);
       });
     }
   }, [mapLoaded]);
 
+  // use effects for visualization switch
   useEffect(() => {
     if (heatmapLayer && mapLoaded) {
       map.current.setLayoutProperty(
@@ -174,38 +161,29 @@ export default function Map() {
     }
   }, [pointLayer, selectedMapLayer, mapLoaded]);
 
-  // const handlePointClick = (e) => {
-  //   const coordinates = e.feaures[0].geometry.coordinates.slice();
-  //   const description = "my first popup";
-
-  //   const newPopup = new maptilersdk.Popup()
-  //     .setLngLat(coordinates)
-  //     .setHTML(description);
-  // };
-
   const handleVizualizationChnge = () => {
     setSelectedMapLayer((prev) => (prev === "point" ? "heatmap" : "point"));
   };
 
-  //sidevbar handlers
-
+  // sidebar handlers
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setIsOpen(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setIsOpen(false);
   };
 
   return (
     <Box sx={{ display: "flex" }}>
-      <Navbar handleDrawerOpen={handleDrawerOpen} open={open} />
+      {/* Why is Sidebar and navbar in the Map? Watch E3 for explanation */}
+      <Navbar handleDrawerOpen={handleDrawerOpen} open={isOpen} />
       <Sidebar
         handleDrawerClose={handleDrawerClose}
-        open={open}
+        open={isOpen}
         item={clickedItem}
       />
-      <Main open={open}>
+      <Main open={isOpen}>
         <Button
           variant="contained"
           className="btn"
