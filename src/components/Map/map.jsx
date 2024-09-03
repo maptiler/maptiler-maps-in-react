@@ -1,7 +1,7 @@
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import Box from "@mui/material/Box";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import configData from "../../config";
 import Navbar from "../Navbar/navbar";
 import "./map.css";
