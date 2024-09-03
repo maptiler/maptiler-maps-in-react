@@ -161,7 +161,7 @@ export default function Map() {
     }
   }, [pointLayer, selectedMapLayer, mapLoaded]);
 
-  const handleVizualizationChnge = () => {
+  const handleVisualizationChange = () => {
     setSelectedMapLayer((prev) => (prev === "point" ? "heatmap" : "point"));
   };
 
@@ -188,7 +188,7 @@ export default function Map() {
           variant="contained"
           className="btn"
           sx={{ top: 84, left: 10, zIndex: 10 }}
-          onClick={handleVizualizationChnge}
+          onClick={handleVisualizationChange}
         >
           Change to {selectedMapLayer === "point" ? "heatmap" : "point"}
         </Button>
