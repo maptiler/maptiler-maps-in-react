@@ -2,6 +2,7 @@ import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
 import React, { useEffect, useRef, useState } from "react";
 import configData from "../../config";
 import Navbar from "../Navbar/navbar";
@@ -12,7 +13,7 @@ export default function Map() {
   const map = useRef(null);
   const geodata = configData.MAPTILER_DATSET_ID;
   const center = { lng: -157.9253, lat: 21.4732 };
-  const zoom = 9.79; //9.79/21.4732/-157.9253
+  const zoom = 9.79; // 9.79/21.4732/-157.9253
   maptilersdk.config.apiKey = configData.MAPTILER_API_KEY;
   const [heatmapLayer, setHeatmapLayer] = useState("");
   const [pointLayer, setPointLayer] = useState("");
@@ -22,14 +23,13 @@ export default function Map() {
 
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
-
+    //map options: https://docs.maptiler.com/sdk-js/api/map/
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.STREETS,
+      style: maptilersdk.MapStyle.BACKDROP, //more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
-      terrain: true,
     });
 
     //Read more about MapTiler Heatmap Helper: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
@@ -45,6 +45,7 @@ export default function Map() {
           { propertyValue: 1, value: 60 },
           { propertyValue: 30, value: 0 },
         ],
+        colorRamp: maptilersdk.ColorRampCollection.COOL,
       });
       setHeatmapLayer(heatmapLayerId);
       setMapLoaded(true);
@@ -65,12 +66,14 @@ export default function Map() {
           // cluster: true,
         },
       );
+
       setPointLabels(labelLayerId);
       setPointLayer(pointLayerId);
       setMapLoaded(true);
     });
   }, [center.lng, center.lat, zoom]);
 
+  // use effects for visualization switch
   useEffect(() => {
     if (heatmapLayer && mapLoaded) {
       map.current.setLayoutProperty(
@@ -102,13 +105,14 @@ export default function Map() {
 
   return (
     <Box sx={{ display: "flex" }}>
+      {/* Why is Sidebar and navbar in the Map? Watch E3 for explanation */}
       <Navbar />
       <div className="container">
         <div ref={mapContainer} id="map" className="map" />
         <Button
           variant="contained"
           className="btn"
-          sx={{ top: 20, left: 10 }}
+          sx={{ top: 20, left: 10, zIndex: 10 }}
           onClick={handleVizualizationChnge}
         >
           Change to {selectedMapLayer === "point" ? "heatmap" : "point"}
