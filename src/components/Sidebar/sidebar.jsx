@@ -10,9 +10,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 
 export default function Sidebar({ open, handleDrawerClose, item }) {
-  const drawerWidth = open ? "250px" : "0px";
+  const drawerWidth = "250px";
   const theme = useTheme();
-  console.log(item);
 
   const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -46,17 +45,60 @@ export default function Sidebar({ open, handleDrawerClose, item }) {
           )}
         </IconButton>
       </DrawerHeader>
-      <List>
-        {item ? (
-          <ListItem key={item.id}>
-            <ListItemText primary={item.name} />
+
+      {item ? (
+        <List>
+          <ListItem>
+            <ListItemText
+              primary={<Typography variant="h4">{item.name}</Typography>}
+            />
           </ListItem>
-        ) : (
+          <ListItem>
+            <ListItemText
+              primary={
+                <Typography variant="h5">Host: {item.host_name}</Typography>
+              }
+              secondary={
+                <Typography variant="body">id: {item.host_id}</Typography>
+              }
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={
+                <Typography variant="p">
+                  <b>Room type:</b> {item.room_type}
+                </Typography>
+              }
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={
+                <Typography variant="p">
+                  <b>Minimum night:</b> {item.minimum_nights}
+                </Typography>
+              }
+            />
+          </ListItem>
+          <ListItem key={item.id}>
+            <ListItemText
+              primary={
+                <Typography variant="p">
+                  <b>Neighbourhood: </b>
+                  {item.neighbourhood}, {item.neighbourhood_group}
+                </Typography>
+              }
+            />
+          </ListItem>
+        </List>
+      ) : (
+        <List>
           <Typography variant="body-1" component="p" sx={{ padding: 2 }}>
             Click to point to see more details
           </Typography>
-        )}
-      </List>
+        </List>
+      )}
     </Drawer>
   );
 }

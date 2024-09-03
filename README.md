@@ -2,11 +2,13 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The main branch's code shows a basic example of a map with a marker and navbar using React and MapTiler SDK. This is described step-by-step at https://docs.maptiler.com/react/. The only difference is that this repo has the Material UI for the navbar component, which is part of the map component. This repository's branches show code changes that correspond to the [MapTiler react video series]().
+The main branch's code shows a basic example of a map with a marker and navbar using React and MapTiler SDK. (MapTiler SDK extends MapLibre GL JS with functions related to the MapTiler mapping platform.)
+Repository branches show code changes corresponding to the [MapTiler react video series]().
 
 **Get your MAPTILER_CLOUD_API_KEY** to make this code work: https://cloud.maptiler.com/account/keys/ You can create it for free!
 
-You can learn more about [MapTiler SDK here.](https://docs.maptiler.com/sdk-js/) Find out about [MapTiler Cloud here](https://www.maptiler.com/cloud/); this is where you can get your basemaps and also store your mapping data.
+You can learn more about [MapTiler SDK.](https://docs.maptiler.com/sdk-js/)  
+Find out more about [MapTiler Cloud](https://www.maptiler.com/cloud/) - where you can get your basemaps and store your mapping data.
 
 ## Get started
 
@@ -38,30 +40,35 @@ You can learn more about [MapTiler SDK here.](https://docs.maptiler.com/sdk-js/)
 ```
 
 6. You will find your app on the address http://localhost:5173/.
-   Now you should see the map in your browser.
+   Now, you should see the map in your browser.
 
 ## Episode specific instructions
 
-Use the information below to help you complete the YouTube Tutorials.
+Here is the step-by-step guide for creating a state in the main branch: https://docs.maptiler.com/react/. The only difference is that this repo has the Material UI for the navbar component, which is part of the map component.
 
-#### E1 - Map in react js with geojson data, points and clusters
+#### E1 - Map in react js with geojson data, points, and clusters
 
 add custom geojson data to a react map with SDK helpers
 read more about MapTilerSDK point helpers: https://docs.maptiler.com/sdk-js/api/helpers/#point
 
+You can find geojson data used in tutorial videos in the assets folder
+
 #### E2 - Map in React js with heatmap and visualization switcher
 
-MapTilerSDK heatmap helpers: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
+MapTiler SDK heatmap helpers: https://docs.maptiler.com/sdk-js/api/helpers/#heatmap
+
+MapTiler SDK Color Ramp: https://docs.maptiler.com/sdk-js/api/color-ramp/
 
 #### E3 - Map in React js with popup and sidebar
 
 Material UI: https://mui.com/core/
+MUI sidebar examples: https://mui.com/material-ui/react-drawer/
 
 #### E4 - Map in React js with geocoding control
 
 download MapTiler geocoding control from npm: https://www.npmjs.com/package/@maptiler/geocoding-control
 
-open the terminal on the my-react-map folder
+Open the terminal on the my-react-map folder
 
 - npm i @maptiler/geocoding-control
 - npm install
@@ -70,7 +77,7 @@ open the terminal on the my-react-map folder
 
 #### E5 - 3D Map in React js
 
-Enable/disable map terrain programmatically https://docs.maptiler.com/sdk-js/examples/map-terrain/
+Enable/disable map terrain programmatically: https://docs.maptiler.com/sdk-js/examples/map-terrain/
 
 ## Build with
 
