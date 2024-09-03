@@ -7,8 +7,8 @@ Repository branches show code changes corresponding to the [MapTiler react video
 
 **Get your MAPTILER_CLOUD_API_KEY** to make this code work: https://cloud.maptiler.com/account/keys/ You can create it for free!
 
-You can learn more about [MapTiler SDK.](https://docs.maptiler.com/sdk-js/)
-Find out more about [MapTiler Cloud](https://www.maptiler.com/cloud/)- where you can get your basemaps and store your mapping data.
+You can learn more about [MapTiler SDK.](https://docs.maptiler.com/sdk-js/)   
+Find out more about [MapTiler Cloud](https://www.maptiler.com/cloud/) - where you can get your basemaps and store your mapping data.
 
 ## Get started
 
