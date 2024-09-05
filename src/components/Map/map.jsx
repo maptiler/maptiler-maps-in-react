@@ -5,7 +5,6 @@ import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { styled } from "@mui/material/styles";
 import React, { useEffect, useRef, useState } from "react";
 import configData from "../../config";
 import Navbar from "../Navbar/navbar";
@@ -166,7 +165,6 @@ export default function Map() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      {/* Why is Sidebar and navbar in the Map? Watch E3 for explanation */}
       <Navbar handleDrawerOpen={handleDrawerOpen} open={isOpen} />
       <Sidebar
         handleDrawerClose={handleDrawerClose}
