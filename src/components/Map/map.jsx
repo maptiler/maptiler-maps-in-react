@@ -51,7 +51,8 @@ export default function Map() {
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
       // more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
-      style: "ca4edf54-111a-4225-b8b8-5fd0b17991dd", // This is id of custom map, if you dont want to create a custome map you can use one of standart maps e.g. maptilersdk.MapStyle.BACKDROP
+      style: "ca4edf54-111a-4225-b8b8-5fd0b17991dd", // This is an id of a custom map, if you don't want to create a custom map you can use for example:
+      // style: maptilersdk.MapStyle.BACKDROP,
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
@@ -179,7 +180,6 @@ export default function Map() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      {/* Why is Sidebar and navbar in the Map? Watch E3 for explanation */}
       <Navbar handleDrawerOpen={handleDrawerOpen} open={isOpen} />
       <Sidebar
         handleDrawerClose={handleDrawerClose}
