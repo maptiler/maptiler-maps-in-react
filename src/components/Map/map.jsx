@@ -26,7 +26,7 @@ export default function Map() {
     //map options: https://docs.maptiler.com/sdk-js/api/map/
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.BACKDROP, //more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
+      style: maptilersdk.MapStyle.DATAVIZ.LIGHT, //more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
