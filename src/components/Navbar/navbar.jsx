@@ -39,7 +39,7 @@ export default function Navbar({ handleDrawerOpen, open }) {
           <MenuIcon /> {/* ready for E3 where we are going to add a sidebar */}
         </IconButton>
         <Typography variant="h6" color="inherit" component="div">
-          Honolulu Accommodation
+          My React Map
         </Typography>
       </Toolbar>
     </AppBar>
