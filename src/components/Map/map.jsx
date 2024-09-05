@@ -50,7 +50,8 @@ export default function Map() {
     //map options: https://docs.maptiler.com/sdk-js/api/map/
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.BACKDROP, //more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
+      // more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
+      style: "ca4edf54-111a-4225-b8b8-5fd0b17991dd", // This is id of custom map, if you dont want to create a custome map you can use one of standart maps e.g. maptilersdk.MapStyle.BACKDROP
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
@@ -80,6 +81,7 @@ export default function Map() {
     map.current.on("load", () => {
       const { heatmapLayerId } = maptilersdk.helpers.addHeatmap(map.current, {
         data: geodata,
+        beforeId: "Ocean labels",
         property: "minimum_nights",
         weight: [
           { propertyValue: 1, value: 1 },
@@ -101,6 +103,7 @@ export default function Map() {
         map.current,
         {
           data: geodata,
+          beforeId: "Ocean labels",
           pointColor: maptilersdk.ColorRampCollection.COOL.scale(0, 30),
           property: "minimum_nights",
           pointOpacity: 0.5,
