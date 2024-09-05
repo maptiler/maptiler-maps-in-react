@@ -154,7 +154,6 @@ export default function Map() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      {/* Why is Sidebar and navbar in the Map? Watch E3 for explanation */}
       <Navbar handleDrawerOpen={handleDrawerOpen} open={isOpen} />
       <Sidebar
         handleDrawerClose={handleDrawerClose}
