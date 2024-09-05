@@ -68,6 +68,15 @@ export default function Map() {
       }
     });
 
+    //change map pitch when terrain is loaded
+    map.current.on("terrain", function () {
+      if (map.current.hasTerrain()) {
+        map.current.easeTo({ pitch: 60, duration: 2000 });
+      } else {
+        map.current.easeTo({ pitch: 0, duration: 2000 });
+      }
+    });
+
     //MapTiler Geocoding API: https://docs.maptiler.com/cloud/api/geocoding/
     const gc = new GeocodingControl({
       limit: 10, // limit resoult number
