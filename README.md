@@ -10,6 +10,8 @@ Repository branches show code changes corresponding to the [MapTiler react video
 You can learn more about [MapTiler SDK.](https://docs.maptiler.com/sdk-js/)  
 Find out more about [MapTiler Cloud](https://www.maptiler.com/cloud/) - where you can get your basemaps and store your mapping data.
 
+![React map app done with MapTiler SDK](https://github.com/maptiler/maps-in-react/blob/main/assets/final_app.png)
+
 ## Get started
 
 1. Clone this repo
@@ -90,7 +92,7 @@ Open the terminal on the my-react-map folder.
 Enable/disable map terrain programmatically: https://docs.maptiler.com/sdk-js/examples/map-terrain/
 
 How to find id of last text map layer?
-![how to find layel id](https://github.com/maptiler/maps-in-react/blob/E1-Add-geojson-data/assets/layer_id.png)
+![how to find layel id](https://github.com/maptiler/maps-in-react/blob/main/assets/layer_id.png)
 
 1. Go to [MapTiler Cloud](https://cloud.maptiler.com/)
 2. Select a map that you want to use as a basemap
