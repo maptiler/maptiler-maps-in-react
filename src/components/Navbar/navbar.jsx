@@ -39,7 +39,7 @@ export default function Navbar({ handleDrawerOpen, open }) {
           <MenuIcon /> {/*ready for epizode 3 where we will add sidebar */}
         </IconButton>
         <Typography variant="h6" color="inherit" component="div">
-          My React Map
+          This is my map App
         </Typography>
       </Toolbar>
     </AppBar>
