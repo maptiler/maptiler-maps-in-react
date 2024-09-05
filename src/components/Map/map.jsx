@@ -5,6 +5,7 @@ import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import React, { useEffect, useRef, useState } from "react";
 import configData from "../../config";
 import Navbar from "../Navbar/navbar";
@@ -50,7 +51,7 @@ export default function Map() {
     //map options: https://docs.maptiler.com/sdk-js/api/map/
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.BACKDROP, //more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
+      style: maptilersdk.MapStyle.DATAVIZ.LIGHT, //more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
