@@ -51,13 +51,14 @@ export default function Map() {
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
       // more about map styles: https://docs.maptiler.com/sdk-js/api/map-styles/
-      style: "ca4edf54-111a-4225-b8b8-5fd0b17991dd", // This is an id of a custom map, if you don't want to create a custom map you can use for example:
+      style: "ca4edf54-111a-4225-b8b8-5fd0b17991dd", // This is an id of a custom map. 
+      // If you don't want to create a custom map, you can use for example:
       // style: maptilersdk.MapStyle.BACKDROP,
       center: [center.lng, center.lat],
       zoom: zoom,
       hash: true,
       terrain: true,
-      terrainControl: true,
+      // terrainControl: true,
     });
 
     //change map pitch when terrain is loaded
