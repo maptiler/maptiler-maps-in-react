@@ -110,8 +110,6 @@ export default function Map() {
           pointOpacity: 0.5,
           showLabel: true,
           labelColor: "black",
-          // pointRadius: 10,
-          // cluster: true,
         },
       );
 
