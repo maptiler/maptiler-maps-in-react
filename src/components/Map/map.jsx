@@ -58,7 +58,7 @@ export default function Map() {
       zoom: zoom,
       hash: true,
       terrain: true,
-      // terrainControl: true,
+      terrainControl: true,
     });
 
     //change map pitch when terrain is loaded
