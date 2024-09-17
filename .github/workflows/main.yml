@@ -9,9 +9,8 @@ on:
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
-  id-token: write
 
 # Allow one concurrent deployment
 concurrency:
@@ -42,4 +41,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
-          target-folder: start
+          target-folder: ${{github.ref_name}}
