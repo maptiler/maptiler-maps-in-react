@@ -2,7 +2,6 @@ import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
 import React, { useEffect, useRef, useState } from "react";
 import configData from "../../config";
 import Navbar from "../Navbar/navbar";
@@ -11,7 +10,7 @@ import "./map.css";
 export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const geodata = configData.MAPTILER_DATSET_ID;
+  const geodata = configData.MAPTILER_DATASET_ID;
   const center = { lng: -157.9253, lat: 21.4732 };
   const zoom = 9.79; // 9.79/21.4732/-157.9253
   maptilersdk.config.apiKey = configData.MAPTILER_API_KEY;
