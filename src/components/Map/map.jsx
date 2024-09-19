@@ -33,7 +33,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const geodata = configData.MAPTILER_DATSET_ID;
+  const geodata = configData.MAPTILER_DATASET_ID;
   const center = { lng: -157.9253, lat: 21.4732 };
   const zoom = 9.79; // 9.79/21.4732/-157.9253
   maptilersdk.config.apiKey = configData.MAPTILER_API_KEY;
