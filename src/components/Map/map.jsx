@@ -10,7 +10,7 @@ export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const center = { lng: 139.753, lat: 35.6844 };
-  const [zoom] = useState(14);
+  const zoom = 14;
   maptilersdk.config.apiKey = configData.MAPTILER_API_KEY;
 
   useEffect(() => {
