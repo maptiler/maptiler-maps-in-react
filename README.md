@@ -54,7 +54,7 @@ Here is the step-by-step guide for creating a state in the main branch: https://
 [step-by-step tutorial](https://docs.maptiler.com/react/sdk-js/geojson-points/?utm_medium=social&utm_source=github&utm_campaign=2024%20|%20react)
 
 add custom geojson data to a React map with SDK helpers
-read more about **[MapTilerSDK point helper](https://docs.maptiler.com/sdk-js/api/helpers/#point?utm_medium=social&utm_source=github&utm_campaign=2024%20|%20react):**
+read more about **[MapTilerSDK point helper](https://docs.maptiler.com/sdk-js/api/helpers/#point?utm_medium=social&utm_source=github&utm_campaign=2024%20|%20react)**
 
 You can find GeoJSON data used in tutorial videos in the assets folder.
 
