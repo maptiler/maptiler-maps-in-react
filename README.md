@@ -10,7 +10,7 @@ Repository branches show code changes corresponding to the [MapTiler React video
 
 ---
 
-📖 [Documentation](https://docs.maptiler.com/react/sdk-js/get-started-material-ui/) &nbsp; 📦 🔑 [Get API Key](https://cloud.maptiler.com/account/keys/)
+📖 [Documentation](https://docs.maptiler.com/react/sdk-js/get-started-material-ui/) &nbsp; 🔑 [Get API Key](https://cloud.maptiler.com/account/keys/)
 
 ---
 
