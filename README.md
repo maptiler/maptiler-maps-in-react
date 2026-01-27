@@ -6,8 +6,6 @@ The main branch's code shows a basic example of a map with a marker and navbar u
 
 Repository branches show code changes corresponding to the [MapTiler React video series](https://youtube.com/playlist?list=PLGHe6Moaz52Mb9_0qH9mdktsTgkrow9oI&si=2RCT0UU_2ssLyGjN).
 
-![](https://img.shields.io/badge/-white?style=for-the-badge&logo=javascript)![](https://img.shields.io/badge/-white?style=for-the-badge&logo=typescript)![](https://img.shields.io/badge/-white?style=for-the-badge&logo=react&logoColor=61dafb)
-
 ---
 
 📖 [Documentation](https://docs.maptiler.com/react/sdk-js/get-started-material-ui/) &nbsp; 🔑 [Get API Key](https://cloud.maptiler.com/account/keys/)
@@ -82,7 +80,7 @@ Check out the full list of [MapTiler examples](https://docs.maptiler.com/react/e
 
 ### Episode specific instructions
 
-Here is the step-by-step guide for creating a state in the main branch: https://docs.maptiler.com/react/sdk-js/get-started-material-ui/. 
+Here is the step-by-step guide for creating a state in the main branch: https://docs.maptiler.com/react/sdk-js/get-started-material-ui/.
 
 #### E1 - Map in React js with geojson data, points, and clusters
 
@@ -97,7 +95,7 @@ You can find GeoJSON data used in tutorial videos in the assets folder.
 
 [step-by-step tutorial](https://docs.maptiler.com/react/sdk-js/heatmap/?utm_medium=social&utm_source=github&utm_campaign=2024%20|%20react)
 
-**[MapTiler SDK heatmap helper](https://docs.maptiler.com/sdk-js/api/helpers/#heatmap?utm_medium=social&utm_source=github&utm_campaign=2024%20|%20react)** 
+**[MapTiler SDK heatmap helper](https://docs.maptiler.com/sdk-js/api/helpers/#heatmap?utm_medium=social&utm_source=github&utm_campaign=2024%20|%20react)**
 **[MapTiler SDK Color Ramp](https://docs.maptiler.com/sdk-js/api/color-ramp/?utm_medium=social&utm_source=github&utm_campaign=2024%20|%20react)**
 
 #### E3 - Map in React js with popup and sidebar
@@ -118,7 +116,7 @@ Open the terminal on the my-react-map folder.
 - npm i @maptiler/geocoding-control
 - npm install
 - npm run dev //to start your map app
-  [geocoding API reference](https://docs.maptiler.com/client-js/geocoding/?utm_medium=social&utm_source=github&utm_campaign=2024%20|%20react) 
+  [geocoding API reference](https://docs.maptiler.com/client-js/geocoding/?utm_medium=social&utm_source=github&utm_campaign=2024%20|%20react)
 
 #### E5 - 3D Map in React js
 
@@ -158,9 +156,8 @@ We love contributions from the community! Whether it's bug reports, feature requ
 
 - Fork the repository and create your branch from `main`
 - If you've added code, add tests that cover your changes
-- Ensure your code follows our style guidelines
 - Give your pull request a clear, descriptive summary
-- Open a Pull Request with a comprehensive description
+- Open a pull request with a clear summary and comprehensive description
 
 <br>
 
@@ -177,7 +174,7 @@ This project is built on the shoulders of giants:
 - [MapTiler SDK JS](https://docs.maptiler.com/sdk-js/) – The open-source mapping library
 - [React](https://react.dev/) – The library for web and native user interfaces
 - [Material UI](https://mui.com/material-ui/) – Open-source React component library that implements Google's Material Design
-- [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) – The Build Tool for the Web 
+- [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) – The Build Tool for the Web
 
 <br>
 
